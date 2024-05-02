@@ -120,3 +120,8 @@ function updateInfoWindow(content, center) {
 }
 
 initMap();
+
+
+const hoy = new Date(Date.now());
+
+console.log(hoy.toISOString());
