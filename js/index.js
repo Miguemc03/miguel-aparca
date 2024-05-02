@@ -124,4 +124,7 @@ initMap();
 
 const hoy = new Date(Date.now());
 
-console.log(hoy.toISOString());
+const fecha = hoy.toISOString()
+const hora = hoy.getHours()+":"+hoy.getMinutes()+":"+hoy.getSeconds();
+
+console.log(fecha+ " "+ hora);
