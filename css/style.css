@@ -16,3 +16,22 @@
 .background-color{
   background-color: #020018;
 }
+
+.custom-map-control-button{
+  background-color: #020018;
+  color: white;
+  border: 1px solid #020018;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  top: 10px !important;
+}
+
+button{
+  background-color: #020018;
+  color: white;
+  border: 1px solid #020018;
+  border-radius: 8px !important;
+  padding: 10px;
+  cursor: pointer;
+}

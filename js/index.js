@@ -2,6 +2,9 @@ let map;
 let marker;
 let infoWindow;
 
+let lat;
+let lng;
+let formattedAddress;
 
 async function initMap() {
   // Request needed libraries.
@@ -38,9 +41,9 @@ async function initMap() {
   infoWindow = new google.maps.InfoWindow({});
 
   const locationButton = document.createElement("button");
-  locationButton.textContent = "Pan to Current Location";
+  locationButton.textContent = "Ubicación actual";	
   locationButton.classList.add("custom-map-control-button");
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(locationButton);
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -57,6 +60,8 @@ async function initMap() {
             zoom: 8,
             title: "Location found.",
           });
+          lat = position.coords.latitude;
+          lng = position.coords.longitude;
           console.log(position.coords + " " + position.coords.latitude + " " + position.coords.longitude)
           map.setCenter(pos);
         },
@@ -102,6 +107,9 @@ async function initMap() {
       place.formattedAddress +
       "</span>" +
       "</div>";
+      lat = place.location.lat();
+      lng = place.location.lng();
+      formattedAddress = place.formattedAddress;
     console.log(place.formattedAddress + " " + place.location.lat() + " " + place.location.lng());
     updateInfoWindow(content, place.location);
     marker.position = place.location;
@@ -128,3 +136,12 @@ const fecha = hoy.toISOString()
 const hora = hoy.getHours()+":"+hoy.getMinutes()+":"+hoy.getSeconds();
 
 console.log(fecha+ " "+ hora);
+
+let checkButton = document.getElementById("check_button");
+let insertText = document.getElementById("insert-text");
+
+checkButton.addEventListener("click", function(){
+  console.log("Button clicked");
+  insertText.innerHTML = "Fecha: "+fecha+ " Hora: "+hora + " Latitud: "+lat + " Longitud: "+lng + " Dirección: "+formattedAddress;
+});
+  
